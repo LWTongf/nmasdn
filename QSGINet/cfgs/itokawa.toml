@@ -1,0 +1,32 @@
+name = "Itokawa"
+cuda_devices = "1"
+plotting_points = 2500
+sample_path = "mascons/"
+samples = [ "Itokawa.pk",]
+
+[model]
+activation = [ "Abs",]
+encoding = ["direct_encoding", ]
+target_point_samplers = ["spherical",]
+sample_domain = [ 0.0, 1.0,]
+use_acceleration = true
+type = " QSGINet" #optional "QSGINet","siren" , "default", "nerf"
+hidden_layers = [ 9,]
+n_neurons = [ 100,]
+
+[siren]
+omega = [30.0,]
+
+[integration]
+points = 300000
+limit_domain = false
+domain = [ [ -1.0, 1.0,], [ -1.0, 1.0,], [ -1.0, 1.0,],]
+
+[training]
+iterations =10000
+batch_sizes = [ 1000,]
+lr = 0.0001
+losses = [ "normalized_L1_loss",]
+visual_loss = false
+differential_training = false
+validation_points = 10000
